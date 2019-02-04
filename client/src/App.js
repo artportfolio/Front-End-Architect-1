@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 import Header from "./components/Header";
+import BreadCrumbs from "./components/BreadCrumbs";
 import { LoggedInView } from "./views/LoggedInView";
 import { LoggedOutView } from "./views/LoggedOutView";
 import "./styles/styles.css";
@@ -17,7 +18,10 @@ export class App extends Component {
     return (
       <div className="App">
         <Header />
-        {this.props.loggedIn ? <LoggedInView /> : <LoggedOutView />}
+
+        <div className="wrapper">
+          {this.props.loggedIn ? <LoggedInView /> : <LoggedOutView />}
+        </div>
       </div>
     );
   }

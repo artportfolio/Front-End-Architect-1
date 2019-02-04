@@ -9,7 +9,7 @@ const Header = props => {
     <div>
       <nav className="header">
         <NavLink exact to="/" className="logo">
-          <FontAwesomeIcon className="palette" icon={["far", "palette"]} />
+          <FontAwesomeIcon className="palette" icon={["fas", "palette"]} />
           artful
         </NavLink>
         <NavLink exact to="/" className="login-logout">
