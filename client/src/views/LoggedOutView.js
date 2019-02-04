@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import BreadCrumbs from "../components/BreadCrumbs";
 import PhotoList from "../components/PhotoList";
 
 export class LoggedOutView extends Component {
   render() {
     return (
       <div>
-        {/* <p>This is the Logged Out View</p> */}
+        <BreadCrumbs />
         <PhotoList />
       </div>
     );

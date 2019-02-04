@@ -9,7 +9,6 @@ html {
 }
 
 body {
-  font-family: helvetica;
   position: relative;
   font-size: 100%;
   background: #26393d;
@@ -118,7 +117,7 @@ body {
 }
 .modal img {
   width: 100%;
-  border: 5px solid #fff;
+  border: 5px solid #080c0d;
 }
 
 .modal-overlay {
