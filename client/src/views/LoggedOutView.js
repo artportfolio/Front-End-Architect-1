@@ -6,7 +6,7 @@ export class LoggedOutView extends Component {
   render() {
     return (
       <div>
-        <h1>This is the Logged Out View</h1>
+        {/* <p>This is the Logged Out View</p> */}
         <PhotoList />
       </div>
     );

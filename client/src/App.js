@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import { NavLink, Route } from "react-router-dom";
+import Header from "./components/Header";
 import { LoggedInView } from "./views/LoggedInView";
 import { LoggedOutView } from "./views/LoggedOutView";
-
+import "./styles/styles.css";
 export class App extends Component {
   constructor() {
     super();
@@ -16,11 +16,7 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav>
-          <NavLink exact to="/">
-            <h1 className="logo">artful</h1>
-          </NavLink>
-        </nav>
+        <Header />
         {this.props.loggedIn ? <LoggedInView /> : <LoggedOutView />}
       </div>
     );

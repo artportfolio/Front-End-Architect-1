@@ -1,10 +1,23 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
+import "../fontawesome";
+import "../styles/styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = props => {
-  return <div />;
+  return (
+    <div>
+      <nav className="header">
+        <NavLink exact to="/" className="logo">
+          <FontAwesomeIcon className="palette" icon={["far", "palette"]} />
+          artful
+        </NavLink>
+        <NavLink exact to="/" className="login-logout">
+          LOGIN
+        </NavLink>
+      </nav>
+    </div>
+  );
 };
-
-Header.propTypes = {};
 
 export default Header;
