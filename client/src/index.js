@@ -6,8 +6,8 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import rootReducer from "./store/reducers";
-
 import "./styles/styles.css";
+import "./fontawesome";
 import App from "./App";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
