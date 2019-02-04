@@ -1,0 +1,24 @@
+{
+  "name": "artful",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atbenedict/artful"
+  },
+  "author": "Andrew Benedict",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atbenedict/artful/issues"
+  },
+  "homepage": "https://github.com/atbenedict/artful#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2"
+  }
+}
