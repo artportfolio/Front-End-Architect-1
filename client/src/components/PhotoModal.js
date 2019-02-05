@@ -1,68 +1,35 @@
 import React from "react";
 
 class PhotoModal extends React.Component {
-  constructor() {
-    super();
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+  constructor(props) {
+    super(props);
   }
-  componentDidMount() {
-    document.body.addEventListener("keydown", this.handleKeyDown);
-  }
-  componentWillUnMount() {
-    document.body.removeEventListener("keydown", this.handleKeyDown);
-  }
-  handleKeyDown(e) {
-    if (e.keyCode === 27) this.props.closeModal();
-    if (e.keyCode === 37 && this.props.hasPrev) this.props.findPrev();
-    if (e.keyCode === 39 && this.props.hasNext) this.props.findNext();
-  }
+  componentDidMount() {}
+
   render() {
-    const {
-      closeModal,
-      hasNext,
-      hasPrev,
-      findNext,
-      findPrev,
-      src
-    } = this.props;
-    if (!src) {
+    if (!this.props.src) {
       console.log("whut");
       return null;
     }
     return (
       <div>
-        <div className="modal-overlay" onClick={closeModal} />
-        <div isOpen={!!src} className="modal">
+        <div className="modal-overlay" onClick={this.props.closeModal} />
+        <div isOpen={!!this.props.src.square} className="modal">
           <div className="modal-body">
-            <a
-              href="#"
-              className="modal-close"
-              onClick={closeModal}
-              onKeyDown={this.handleKeyDown}
-            >
+            <a href="#" className="modal-close" onClick={this.props.closeModal}>
               &times;
             </a>
-            {hasPrev && (
-              <a
-                href="#"
-                className="modal-prev"
-                onClick={findPrev}
-                onKeyDown={this.handleKeyDown}
-              >
+            {this.props.hasPrev && (
+              <a href="#" className="modal-prev" onClick={this.props.findPrev}>
                 &lsaquo;
               </a>
             )}
-            {hasNext && (
-              <a
-                href="#"
-                className="modal-next"
-                onClick={findNext}
-                onKeyDown={this.handleKeyDown}
-              >
+            {this.props.hasNext && (
+              <a href="#" className="modal-next" onClick={this.props.findNext}>
                 &rsaquo;
               </a>
             )}
-            <img src={src} />
+            <img src={this.props.src.square} />
           </div>
         </div>
       </div>

@@ -1,15 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../fontawesome";
+import { MdPalette } from "react-icons/md";
 import "../styles/styles.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = props => {
   return (
     <div>
       <nav className="header">
         <NavLink exact to="/" className="logo">
-          <FontAwesomeIcon className="palette" icon={["fas", "palette"]} />
+          <div className="palette">
+            <MdPalette />
+          </div>
           artful
         </NavLink>
         <NavLink exact to="/" className="login-logout">
