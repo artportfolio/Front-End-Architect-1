@@ -21,7 +21,14 @@ class PhotoList extends React.Component {
   renderImageContent(src, index) {
     return (
       <div onClick={e => this.openModal(e, index)}>
-        <img src={src.square} key={src.id} alt="alternative text" />
+        <img
+          src={src.square}
+          id={src.id}
+          photographer={src.photographer}
+          original={src.original}
+          key={src.id}
+          alt="alternative text"
+        />
       </div>
     );
   }
@@ -62,7 +69,7 @@ class PhotoList extends React.Component {
           findNext={this.findNext}
           hasPrev={this.state.currentIndex > 0}
           hasNext={this.state.currentIndex + 1 < this.props.photos.length}
-          src={this.props.photos.square}
+          src={this.props.photos[this.state.currentIndex]}
         />
       </div>
     );
