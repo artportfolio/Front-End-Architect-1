@@ -226,6 +226,11 @@ a:hover {
 }
 
 .breadcrumbs {
+  text-align: center;
+  padding-top: 10px;
+  z-index: 3;
+  position: sticky;
+  top: 0;
   font-size: 24px;
-  opacity: 0.33;
+  opacity: 0.66;
 }

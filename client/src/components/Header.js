@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import { MdPalette } from "react-icons/md";
 import "../styles/styles.css";
 
 const Header = props => {
@@ -8,7 +8,9 @@ const Header = props => {
     <div>
       <nav className="header">
         <NavLink exact to="/" className="logo">
-          <div className="palette" />
+          <div className="palette">
+            <MdPalette />
+          </div>
           artful
         </NavLink>
         <NavLink exact to="/" className="login-logout">
