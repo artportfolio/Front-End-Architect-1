@@ -1,7 +1,13 @@
 import {
   FETCH_PHOTOS_START,
   FETCH_PHOTOS_SUCCESS,
-  FETCH_PHOTOS_FAILURE
+  FETCH_PHOTOS_FAILURE,
+  REGISTER_USER_START,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAILURE,
+  USER_LOGIN_START,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -24,6 +30,12 @@ const photos = (state = initialState, action) => {
       return {
         ...state,
         photos: parsePhotos(action.payload)
+      };
+
+    case USER_LOGIN_SUCCESS:
+      return {
+        ...state,
+        loggedIn: true
       };
 
     default:
