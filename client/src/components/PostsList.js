@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getPhotos } from "../store/actions";
+import { getAllPosts } from "../store/actions";
 import PhotoModal from "./PhotoModal";
-import "../styles/photoList.css";
+import "../styles/postsList.css";
 
-class PhotoList extends React.Component {
+class PostsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { currentIndex: null };
@@ -15,19 +15,20 @@ class PhotoList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getPhotos();
+    this.props.getAllPosts();
   }
 
   renderImageContent(src, index) {
     return (
       <div onClick={e => this.openModal(e, index)}>
         <img
-          src={src.square}
+          src={src.imageUrl}
           id={src.id}
-          photographer={src.photographer}
-          original={src.original}
+          artist={src.userId}
+          upvotes={src.upvotes}
           key={src.id}
-          alt="alternative text"
+          postName={src.postName}
+          alt={src.description}
         />
       </div>
     );
@@ -61,15 +62,19 @@ class PhotoList extends React.Component {
     return (
       <div className="gallery-container">
         <div className="gallery-grid">
-          {this.props.photos.map(this.renderImageContent)}
+          {this.props.posts.map(this.renderImageContent)}
         </div>
         <PhotoModal
           closeModal={this.closeModal}
           findPrev={this.findPrev}
           findNext={this.findNext}
           hasPrev={this.state.currentIndex > 0}
-          hasNext={this.state.currentIndex + 1 < this.props.photos.length}
-          src={this.props.photos[this.state.currentIndex]}
+          hasNext={this.state.currentIndex + 1 < this.props.posts.length}
+          src={this.props.posts[this.state.currentIndex]}
+          // upvotes={this.props.posts[this.state.currentIndex].upvotes}
+          // userId={this.props.posts[this.state.currentIndex].userId}
+          // description={this.props.posts[this.state.currentIndex].description}
+          // postName={this.props.posts[this.state.currentIndex].postName}
         />
       </div>
     );
@@ -77,10 +82,10 @@ class PhotoList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  photos: state.photos
+  posts: state.post.posts
 });
 
 export default connect(
   mapStateToProps,
-  { getPhotos }
-)(PhotoList);
+  { getAllPosts }
+)(PostsList);

@@ -213,11 +213,10 @@ select {
 a {
   text-decoration: none;
   color: #e8e595;
-  opacity: 0.66;
 }
 
 a:hover {
-  opacity: 1;
+  color: #fffca3;
 }
 
 .wrapper {
@@ -233,4 +232,29 @@ a:hover {
   top: 0;
   font-size: 24px;
   opacity: 0.66;
+}
+
+.login-register-forms {
+  background-color: rgba(64, 98, 124, 0.33);
+  border-radius: 6px;
+  box-shadow: 0px 0px 3px #000;
+  margin: 100px auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.login-register-forms h1 {
+  font-size: 1.4rem;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(64, 98, 124, 0.6);
+}
+
+form {
+  font-size: 60%;
+  padding: 30px;
+  width: 40%;
+  min-width: 300px;
 }

@@ -2,14 +2,14 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 import BreadCrumbs from "../components/BreadCrumbs";
-import PhotoList from "../components/PhotoList";
+import PostsList from "../components/PostsList";
 
 export class LoggedInView extends Component {
   render() {
     return (
       <div>
-        <BreadCrumbs />
-        <PhotoList />
+        {/* <BreadCrumbs /> */}
+        <PostsList />
       </div>
     );
   }

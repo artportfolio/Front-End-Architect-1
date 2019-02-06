@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import BreadCrumbs from "../components/BreadCrumbs";
-import PhotoList from "../components/PhotoList";
+
+import { LoginForm } from "./Login";
+import { RegistrationForm } from "./Register";
 
 export class LoggedOutView extends Component {
   render() {
     return (
       <div>
-        <BreadCrumbs />
-        <PhotoList />
+        {/* <BreadCrumbs />
+        <PostsList /> */}
+        <div className="login-register-forms">
+          <RegistrationForm className="registrationForm" />
+          <LoginForm className="loginForm" />
+        </div>
       </div>
     );
   }

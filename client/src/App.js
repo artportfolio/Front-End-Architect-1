@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Route, NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Header from "./components/Header";
 import BreadCrumbs from "./components/BreadCrumbs";
@@ -9,9 +9,7 @@ import "./styles/styles.css";
 export class App extends Component {
   constructor() {
     super();
-    this.state = {
-      loggedIn: false
-    };
+    this.state = {};
   }
 
   render() {
@@ -28,11 +26,12 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.loggedIn,
-  photos: state.photos
+  loggedIn: state.auth.loggedIn
 });
+
+const AppWithRouter = withRouter(App);
 
 export default connect(
   mapStateToProps,
   {}
-)(App);
+)(AppWithRouter);
