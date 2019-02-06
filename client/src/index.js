@@ -7,7 +7,7 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import rootReducer from "./store/reducers";
 import "./styles/styles.css";
-import App from "./App";
+import AppWithRouter from "./App";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
@@ -19,7 +19,7 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <AppWithRouter />
     </Router>
   </Provider>,
   rootElement

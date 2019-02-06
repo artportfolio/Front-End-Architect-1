@@ -1,6 +1,6 @@
 .text-input {
   padding: 0.5rem;
-  font-size: 16px;
+  font-size: 14px;
   width: 100%;
   display: block;
   border-radius: 4px;
@@ -52,11 +52,11 @@ button {
   padding: 12px 20px;
   border-style: none;
   border-radius: 5px;
-  background-color: #08c;
+  background-color: #40627c;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   font-size: 17px;
   font-weight: 500;
-  color: #fff;
+  color: #e8e595;
   cursor: pointer;
   outline: none;
   -webkit-appearance: none;
@@ -106,4 +106,28 @@ button.outline {
 
 .shake {
   animation-name: shake;
+}
+.login-register-forms {
+  display: flex;
+}
+.login-register-forms .loginForm {
+  padding: 20px;
+}
+
+.login-register-forms .registrationForm {
+  padding: 20px;
+}
+
+.loginForm {
+  max-width: 40%;
+  min-width: 300px;
+}
+
+.registrationForm {
+  max-width: 40%;
+  min-width: 300px;
+}
+.loginForm img {
+  margin-top: 20px;
+  width: 100%;
 }

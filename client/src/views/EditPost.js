@@ -5,28 +5,31 @@ import classnames from "classnames";
 import axios from "axios";
 import "../styles/styles.css";
 import "../styles/form.css";
-import logo from "../assets/logo.png";
 
 const formikEnhancer = withFormik({
   validationSchema: Yup.object().shape({
-    username: Yup.string()
-      .min(2, "C'mon, your username is longer than that")
-      .required("Username is required."),
-    password: Yup.string().required("Password is required.")
+    postName: Yup.string().min(
+      2,
+      "You can't even come up with a name longer than two characters?"
+    ),
+    description: Yup.string().min(
+      2,
+      "You can do better than that...try three characters at least."
+    ),
+    imageUrl: Yup.string().url("This doesn't look like a URL")
   }),
 
   mapPropsToValues: ({ user }) => ({
     ...user
   }),
   handleSubmit: (payload, { setSubmitting }) => {
-    const endpoint = "https://backend-art.herokuapp.com/api/login";
+    const endpoint = "https://backend-art.herokuapp.com/api/register";
     console.log(payload);
-    // let cleanPayload = JSON.stringify(payload, null, 2);
     axios
       .post(endpoint, payload)
       .then(res => {
         console.log(res.data);
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("register", res.data);
       })
       .catch(err => {
         console.error("ERROR", err);
@@ -55,7 +58,6 @@ const TextInput = ({
   value,
   onChange,
   className,
-  autoComplete,
   ...props
 }) => {
   const classes = classnames(
@@ -72,7 +74,6 @@ const TextInput = ({
       </Label>
       <input
         id={id}
-        autoComplete="off"
         className="text-input"
         type={type}
         value={value}
@@ -94,38 +95,46 @@ const MyForm = props => {
     isSubmitting
   } = props;
   return (
-    <div className="loginForm">
+    <div className="editPostForm">
       <form onSubmit={handleSubmit}>
-        <h1>Returning Members</h1>
+        <h1>Edit Post</h1>
         <TextInput
-          id="username"
+          id="postName"
           type="text"
-          label="Username"
+          label="Post Name"
           placeholder=""
-          error={touched.username && errors.username}
-          value={values.username}
+          error={touched.postname && errors.postname}
+          value={values.postname || ""}
           onChange={handleChange}
           onBlur={handleBlur}
         />
         <TextInput
-          id="password"
-          type="password"
-          label="Password"
+          id="imageUrl"
+          type="text"
+          label="image URL"
           placeholder=""
-          error={touched.password && errors.password}
-          value={values.password}
+          error={touched.imageUrl && errors.imageUrl}
+          value={values.imageUrl || ""}
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        <TextInput
+          id="description"
+          type="text"
+          label="Description"
+          placeholder={values.description}
+          error={touched.description && errors.description}
+          value={values.description || ""}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+
         <button type="submit" disabled={isSubmitting}>
-          LOGIN
+          Update Post
         </button>
-        <div className="login-logo">
-          <img src={logo} alt="artful logo" />{" "}
-        </div>
       </form>
     </div>
   );
 };
 
-export const LoginForm = formikEnhancer(MyForm);
+export const EditPostForm = formikEnhancer(MyForm);
