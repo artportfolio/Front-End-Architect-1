@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import { editPost } from "../store/actions/postActions";
+import { createPost } from "../store/actions/postActions";
 import "../styles/styles.css";
 import "../styles/form.css";
 
-class EditPost extends Component {
+class CreatePost extends Component {
   handleSubmit = (values, { props = this.props, setSubmitting }) => {
-    this.props.editPost(values);
+    this.props.createPost(values);
     setSubmitting(false);
     return;
   };
@@ -25,7 +25,7 @@ class EditPost extends Component {
           render={formProps => {
             return (
               <div className="createPostForm">
-                <h1>Edit Post</h1>
+                <h1>Create New Post</h1>
                 <Form>
                   <Field
                     type="text"
@@ -58,10 +58,10 @@ class EditPost extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-  editPost
+  createPost
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditPost);
+)(CreatePost);

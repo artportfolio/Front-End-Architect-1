@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
-import { LoginForm } from "./Login";
-import { RegistrationForm } from "./Register";
+// import { LoginForm } from "./Login";
+import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
+import { loginUser } from "../store/actions/authActions";
+import { registerUser } from "../store/actions/userActions";
 
 export class LoggedOutView extends Component {
   render() {
     return (
       <div>
-        {/* <BreadCrumbs />
-        <PostsList /> */}
         <div className="login-register-forms">
-          <RegistrationForm className="registrationForm" />
-          <LoginForm className="loginForm" />
+          <RegisterForm
+            registerUser={this.props.registerUser}
+            className="registrationForm"
+          />
+          <LoginForm loginUser={this.props.loginUser} className="loginForm" />
         </div>
       </div>
     );
@@ -21,7 +24,10 @@ export class LoggedOutView extends Component {
 
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  loginUser,
+  registerUser
+};
 
 export default connect(
   mapStateToProps,

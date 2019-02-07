@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import { editPost } from "../store/actions/postActions";
+import { loginUser } from "../store/actions/authActions";
 import "../styles/styles.css";
 import "../styles/form.css";
+import logo from "../assets/logo.png";
 
-class EditPost extends Component {
+class LoginForm extends Component {
   handleSubmit = (values, { props = this.props, setSubmitting }) => {
-    this.props.editPost(values);
+    this.props.loginUser(values);
     setSubmitting(false);
     return;
   };
@@ -17,35 +18,26 @@ class EditPost extends Component {
       <form>
         <Formik
           initialValues={{
-            postName: "",
-            description: "",
-            imageUrl: ""
+            username: "",
+            password: ""
           }}
           onSubmit={this.handleSubmit}
           render={formProps => {
             return (
-              <div className="createPostForm">
-                <h1>Edit Post</h1>
+              <div className="loginForm">
+                <h1>Returning Members</h1>
                 <Form>
-                  <Field
-                    type="text"
-                    name="postName"
-                    label="Post Name"
-                    placeholder="Post Name"
-                  />
+                  <Field type="text" name="username" placeholder="" />
 
-                  <Field
-                    type="text"
-                    name="description"
-                    placeholder="Description"
-                  />
-
-                  <Field type="text" name="imageUrl" placeholder="Image URL" />
+                  <Field type="password" name="password" placeholder="" />
 
                   <button type="submit" disabled={formProps.isSubmitting}>
-                    CREATE POST
+                    LOGIN
                   </button>
                 </Form>
+                <div className="login-logo">
+                  <img src={logo} alt="artful logo" />{" "}
+                </div>
               </div>
             );
           }}
@@ -58,10 +50,10 @@ class EditPost extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-  editPost
+  loginUser
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditPost);
+)(LoginForm);

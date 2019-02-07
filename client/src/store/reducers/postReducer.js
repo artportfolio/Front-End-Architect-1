@@ -22,6 +22,8 @@ import {
   DELETE_POST_FAILURE
 } from "../../store/actions/types";
 
+import { getPost } from "../actions/postActions";
+
 const initialState = {
   posts: [],
   singlePost: [],

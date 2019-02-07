@@ -203,11 +203,39 @@ select {
   justify-content: space-between;
 }
 
-.login-logout {
+.userMenu {
+  font-size: 1.3rem;
+  font-family: inherit;
+  padding: 0;
   margin-right: 20px;
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  box-shadow: none;
+}
+
+.userMenu p {
+  padding: 10px;
+}
+
+.menu {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu button {
+  font-size: 0.8rem;
+  margin: 0;
+  border-radius: 0;
+}
+
+button:hover {
+  color: #e8e595;
 }
 
 a {
