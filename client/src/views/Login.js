@@ -19,18 +19,19 @@ const formikEnhancer = withFormik({
     ...user
   }),
   handleSubmit: (payload, { setSubmitting }) => {
-    const endpoint = "https://backend-art.herokuapp.com/api/login";
-    console.log(payload);
+    // props.loginUser(payload);
+    // const endpoint = "https://backend-art.herokuapp.com/api/login";
+    // console.log(payload);
     // let cleanPayload = JSON.stringify(payload, null, 2);
-    axios
-      .post(endpoint, payload)
-      .then(res => {
-        console.log(res.data);
-        localStorage.setItem("token", res.data.token);
-      })
-      .catch(err => {
-        console.error("ERROR", err);
-      });
+    // axios
+    //   .post(endpoint, payload)
+    //   .then(res => {
+    //     console.log(res.data);
+    //     localStorage.setItem("token", res.data.token);
+    //   })
+    //   .catch(err => {
+    //     console.error("ERROR", err);
+    //   });
     setSubmitting(false);
   },
   displayName: "MyForm"
@@ -95,7 +96,8 @@ const MyForm = props => {
   } = props;
   return (
     <div className="loginForm">
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}> */}
+      <form onSubmit={props.loginUser()}>
         <h1>Returning Members</h1>
         <TextInput
           id="username"

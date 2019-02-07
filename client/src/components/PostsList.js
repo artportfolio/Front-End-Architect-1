@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getAllPosts } from "../store/actions";
-import PhotoModal from "./PhotoModal";
+import PostModal from "./PostModal";
+
 import "../styles/postsList.css";
 
 class PostsList extends React.Component {
@@ -11,14 +12,10 @@ class PostsList extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.findNext = this.findNext.bind(this);
     this.findPrev = this.findPrev.bind(this);
-    this.renderImageContent = this.renderImageContent.bind(this);
+    this.renderPostContent = this.renderPostContent.bind(this);
   }
 
-  componentDidMount() {
-    this.props.getAllPosts();
-  }
-
-  renderImageContent(src, index) {
+  renderPostContent(src, index) {
     return (
       <div onClick={e => this.openModal(e, index)}>
         <img
@@ -62,16 +59,16 @@ class PostsList extends React.Component {
     return (
       <div className="gallery-container">
         <div className="gallery-grid">
-          {this.props.posts.map(this.renderImageContent)}
+          {this.props.posts.map(this.renderPostContent)}
         </div>
-        <PhotoModal
+        <PostModal
           closeModal={this.closeModal}
           findPrev={this.findPrev}
           findNext={this.findNext}
           hasPrev={this.state.currentIndex > 0}
           hasNext={this.state.currentIndex + 1 < this.props.posts.length}
           src={this.props.posts[this.state.currentIndex]}
-          // upvotes={this.props.posts[this.state.currentIndex].upvotes}
+          // upvotes={this.props.posts.upvotes}
           // userId={this.props.posts[this.state.currentIndex].userId}
           // description={this.props.posts[this.state.currentIndex].description}
           // postName={this.props.posts[this.state.currentIndex].postName}

@@ -17,11 +17,17 @@ import {
   DELETE_USER_FAILURE
 } from "./types";
 const baseUrl = "https://backend-art.herokuapp.com/";
-
+//FOR POSTS,PUTS,DELETES
+const token = localStorage.getItem("jwt");
+const request = {
+  headers: {
+    authorization: token
+  }
+};
 export const registerUser = userRegistration => dispatch => {
   dispatch({ type: REGISTER_USER_START });
   axios
-    .post(`${baseUrl}api/register${userRegistration}`)
+    .post(`${baseUrl}api/register`, userRegistration)
     .then(response =>
       dispatch({ type: REGISTER_USER_SUCCESS, payload: response.data })
     )

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import { editPost } from "../store/actions/postActions";
+import { registerUser } from "../store/actions/userActions";
 import "../styles/styles.css";
 import "../styles/form.css";
 
-class EditPost extends Component {
+class RegisterForm extends Component {
   handleSubmit = (values, { props = this.props, setSubmitting }) => {
-    this.props.editPost(values);
+    this.props.registerUser(values);
     setSubmitting(false);
     return;
   };
@@ -17,33 +17,32 @@ class EditPost extends Component {
       <form>
         <Formik
           initialValues={{
-            postName: "",
-            description: "",
-            imageUrl: ""
+            username: "",
+            password: ""
           }}
           onSubmit={this.handleSubmit}
           render={formProps => {
             return (
-              <div className="createPostForm">
-                <h1>Edit Post</h1>
+              <div className="registrationForm">
+                <h1>New Members</h1>
                 <Form>
                   <Field
                     type="text"
-                    name="postName"
-                    label="Post Name"
-                    placeholder="Post Name"
+                    name="username"
+                    label="Username"
+                    placeholder=""
                   />
 
-                  <Field
-                    type="text"
-                    name="description"
-                    placeholder="Description"
-                  />
+                  <Field type="text" name="fullName" placeholder="" />
 
-                  <Field type="text" name="imageUrl" placeholder="Image URL" />
+                  <Field type="password" name="password" placeholder="" />
+
+                  <Field type="text" name="email" placeholder="" />
+
+                  <Field type="text" name="userImgUrl" placeholder="" />
 
                   <button type="submit" disabled={formProps.isSubmitting}>
-                    CREATE POST
+                    SIGN UP
                   </button>
                 </Form>
               </div>
@@ -58,10 +57,10 @@ class EditPost extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-  editPost
+  registerUser
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditPost);
+)(RegisterForm);
