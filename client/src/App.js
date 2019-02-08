@@ -5,8 +5,8 @@ import Header from "./components/Header";
 import BreadCrumbs from "./components/BreadCrumbs";
 import { LoggedInView } from "./views/LoggedInView";
 import { LoggedOutView } from "./views/LoggedOutView";
-import CreatePost from "./views/CreatePost";
-import EditPost from "./views/EditPost";
+import AddPostForm from "./components/AddPostForm";
+import EditUserForm from "./components/EditUserForm";
 import { logoutUser, secretLogin } from "./store/actions/authActions";
 import { getAllPosts } from "./store/actions/postActions";
 import { getAllUsers } from "./store/actions/userActions";
@@ -29,8 +29,8 @@ export class App extends Component {
         <div className="wrapper">
           {this.props.loggedIn ? <LoggedInView /> : <LoggedOutView />}
         </div>
-        <Route exact path="/create" component={CreatePost} />
-        <Route exact path="/edit" component={EditPost} />
+        <Route path="/add" component={AddPostForm} />
+        <Route path="/edit" component={EditUserForm} />
       </div>
     );
   }

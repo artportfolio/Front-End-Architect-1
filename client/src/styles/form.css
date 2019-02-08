@@ -118,16 +118,7 @@ button.outline {
   padding: 20px;
 }
 
-.loginForm {
-  max-width: 40%;
-  min-width: 300px;
-}
-
 .registrationForm {
   max-width: 40%;
   min-width: 300px;
-}
-.loginForm img {
-  margin-top: 20px;
-  width: 100%;
 }

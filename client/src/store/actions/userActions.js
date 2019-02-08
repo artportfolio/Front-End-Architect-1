@@ -60,7 +60,7 @@ export const getASingleUser = id => dispatch => {
 export const editUser = (id, changes) => dispatch => {
   dispatch({ type: EDIT_USER_START });
   axios
-    .put(`${baseUrl}api/users/${id}`, changes)
+    .put(`${baseUrl}api/users/${id}`, changes, request)
     .then(response =>
       dispatch({ type: EDIT_USER_SUCCESS, payload: response.data })
     )

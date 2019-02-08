@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { registerUser } from "../store/actions/userActions";
-import { loginUser } from "../store/actions/authActions";
+import { editUser } from "../store/actions/userActions";
 
-class RegisterForm extends Component {
+class EditUserForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,14 +30,13 @@ class RegisterForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.registerUser(this.state);
-    this.props.loginUser(this.state);
+    this.props.editUser(this.state);
   }
 
   render() {
     return (
       <StyledFormContainer>
-        <h1>New Members</h1>
+        <h1>Update Your Information</h1>
         <StyledForm onSubmit={this.handleSubmit}>
           <StyledLabel>
             <p>Username</p>
@@ -133,11 +131,10 @@ const StyledButton = styled.button`
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-  registerUser,
-  loginUser
+  editUser
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RegisterForm);
+)(EditUserForm);

@@ -1,91 +1,65 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { registerUser } from "../store/actions/userActions";
-import { loginUser } from "../store/actions/authActions";
+import { createPost } from "../store/actions/postActions";
 
-class RegisterForm extends Component {
+class AddPostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      fullName: "",
-      password: "",
-      email: "",
-      userImgUrl: ""
+      postName: "",
+      description: "",
+      imageUrl: ""
     };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleInputChange(e) {
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
+  handleInputChange = e => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState(prevState => ({
+      ...prevState,
       [name]: value
-    });
-  }
+    }));
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
-    this.props.registerUser(this.state);
-    this.props.loginUser(this.state);
-  }
+    this.props.createPost(this.state);
+  };
 
   render() {
     return (
       <StyledFormContainer>
-        <h1>New Members</h1>
+        <h1>Create Post</h1>
         <StyledForm onSubmit={this.handleSubmit}>
           <StyledLabel>
-            <p>Username</p>
+            <p>Post Title</p>
             <StyledInput
               name="username"
               type="text"
-              value={this.state.username}
+              value={this.state.postName}
               onChange={this.handleInputChange}
             />
           </StyledLabel>
           <StyledLabel>
-            <p>Full Name</p>
+            <p>Description</p>
             <StyledInput
-              name="fullName"
+              name="description"
               type="text"
-              value={this.state.fullName}
+              value={this.state.description}
               onChange={this.handleInputChange}
             />
           </StyledLabel>
           <StyledLabel>
-            <p>Password</p>
+            <p>URL of Image</p>
             <StyledInput
-              name="password"
-              type="password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
-            />
-          </StyledLabel>
-          <StyledLabel>
-            <p>Email (optional)</p>
-            <StyledInput
-              name="email"
+              name="imageUrl"
               type="text"
-              value={this.state.email}
+              value={this.state.imageUrl}
               onChange={this.handleInputChange}
             />
           </StyledLabel>
-          <StyledLabel>
-            <p>Avatar URL (optional)</p>
-            <StyledInput
-              name="email"
-              type="text"
-              value={this.state.userImgUrl}
-              onChange={this.handleInputChange}
-            />
-          </StyledLabel>
-          <StyledButton type="submit">Register</StyledButton>
+          <StyledButton type="submit">CREATE</StyledButton>
         </StyledForm>
       </StyledFormContainer>
     );
@@ -115,6 +89,11 @@ const StyledInput = styled.input`
   font-size: 1rem;
 `;
 
+const StyledImg = styled.img`
+  margin-top: 20px;
+  width: 80%;
+`;
+
 const StyledButton = styled.button`
   max-width: 150px;
   margin: 20px 0;
@@ -133,11 +112,10 @@ const StyledButton = styled.button`
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-  registerUser,
-  loginUser
+  createPost
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RegisterForm);
+)(AddPostForm);
