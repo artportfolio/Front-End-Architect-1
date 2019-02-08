@@ -7,7 +7,7 @@ class AddPostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      postName: "",
+      postname: "",
       description: "",
       imageUrl: ""
     };
@@ -35,9 +35,9 @@ class AddPostForm extends Component {
           <StyledLabel>
             <p>Post Title</p>
             <StyledInput
-              name="username"
+              name="postname"
               type="text"
-              value={this.state.postName}
+              value={this.state.postname}
               onChange={this.handleInputChange}
             />
           </StyledLabel>
