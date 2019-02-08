@@ -29,8 +29,8 @@ export class App extends Component {
         <div className="wrapper">
           {this.props.loggedIn ? <LoggedInView /> : <LoggedOutView />}
         </div>
-        <Route exact path="/add" component={AddPostForm} />
-        <Route exact path="/edit" component={EditUserForm} />
+        <Route path="/add" component={AddPostForm} />
+        <Route path="/edit" component={EditUserForm} />
       </div>
     );
   }
