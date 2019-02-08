@@ -42,11 +42,15 @@ class PostModal extends React.Component {
                 &rsaquo;
               </a>
             )}
+            {this.props.src.userId == user ? (
+              <>
+                <button onClick={e => this.props.deletePost(this.props.src.id)}>
+                  Delete
+                </button>
 
-            <button onClick={e => this.props.deletePost(this.props.src.id)}>
-              Delete
-            </button>
-            <button>Edit</button>
+                <button>Edit</button>
+              </>
+            ) : null}
 
             <img src={this.props.src.imageUrl} />
           </div>
@@ -68,6 +72,7 @@ class PostModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isEditing: state.isEditing,
   users: state.user.users,
   user: state.user.user.id
 });
