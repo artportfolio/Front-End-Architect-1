@@ -8,7 +8,6 @@ export class LoggedInView extends Component {
   render() {
     return (
       <div>
-        {/* <BreadCrumbs /> */}
         <PostsList />
       </div>
     );

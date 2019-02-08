@@ -24,8 +24,12 @@ export class Header extends Component {
           <div className="userMenu">
             {this.props.loggedIn ? (
               <span className="icons">
-                <MdAddCircleOutline />
-                <MdModeEdit />
+                <NavLink to={"/create"}>
+                  <MdAddCircleOutline />
+                </NavLink>
+                <NavLink to={"/add"}>
+                  <MdModeEdit />
+                </NavLink>
                 <MdExitToApp onClick={this.props.logoutUser} />
               </span>
             ) : null}
