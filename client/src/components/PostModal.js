@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { TiHeartOutline, TiHeartFullOutline } from "react-icons/ti";
+import { deletePost, editPost } from '../store/actions';
 
 class PostModal extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class PostModal extends React.Component {
     };
 
     console.log(`users: ${parseUsers()}`);
-    console.log(`src: ${this.props.src.userId}`);
+    console.log(`src: ${this.props.src.id}`);
 
     return (
       <div>
@@ -43,6 +44,8 @@ class PostModal extends React.Component {
                 &rsaquo;
               </a>
             )}
+            <button onClick={(e) => this.props.deletePost(e, this.props.src.id)} >Delete</button>
+            <button>Edit</button>
             <img src={this.props.src.imageUrl} />
           </div>
           <span className="postInfoLine">{this.artistIndex}</span>
@@ -69,5 +72,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  {deletePost, editPost}
 )(PostModal);

@@ -60,29 +60,32 @@ export const getUserPosts = id => dispatch => {
 };
 
 export const createPost = post => dispatch => {
-  const token = localStorage.getItem("token");
-  const headers = {
+  console.log('adding');
+const token = localStorage.getItem('token');
+const headers = {
     headers: {
-      authorization: token
-    }
-  };
-  dispatch({ type: CREATE_POST_START });
-  axios
-    .post(`${baseUrl}api/posts`, post, headers)
-    .then(response =>
-      dispatch({
-        type: CREATE_POST_SUCCESS,
-        payload: response.data
-      })
-    )
-    .then(getAllPosts())
-    .catch(error => dispatch({ type: CREATE_POST_FAILURE, payload: error }));
+        authorization: token,
+    },
+}
+dispatch({ type: 'CREATE_POST_START' });
+axios
+  .post("https://backend-art.herokuapp.com/api/posts", post, headers)
+  .then(response => 
+    dispatch({ type: 'CREATE_POST_SUCCESS', payload: response.data })
+  )
+  .then(() =>       
+  axios.get("https://backend-art.herokuapp.com/api/posts")
+      .then(response =>
+      dispatch({ type: 'GET_ALL_POSTS_SUCCESS', payload: response.data })
+      ))
+      .catch(error => dispatch({ type: 'GET_ALL_POSTS_FAILURE', payload: error }))
+  .catch(error => console.log(error.message));
 };
 
 export const getAllPosts = () => dispatch => {
   dispatch({ type: GET_ALL_POSTS_START });
   axios
-    .get(`${baseUrl}api/posts`)
+    .get("https://backend-art.herokuapp.com/api/posts")
     .then(response =>
       dispatch({
         type: GET_ALL_POSTS_SUCCESS,
@@ -95,7 +98,7 @@ export const getAllPosts = () => dispatch => {
 export const getPost = id => dispatch => {
   dispatch({ type: GET_POST_START });
   axios
-    .get(`${baseUrl}api/posts/${id}`)
+    .get(`https://backend-art.herokuapp.com/api/posts/${id}`)
     .then(response =>
       dispatch({
         type: GET_POST_SUCCESS,
@@ -114,7 +117,7 @@ export const editPost = (id, changes) => dispatch => {
   };
   dispatch({ type: EDIT_POST_START, payload: id });
   axios
-    .put(`${baseUrl}api/posts/${id}`, changes, headers)
+    .put(`https://backend-art.herokuapp.com/api/posts/${id}`, changes, headers)
     .then(response =>
       dispatch({ type: EDIT_POST_SUCCESS, payload: response.data })
     )
@@ -123,18 +126,22 @@ export const editPost = (id, changes) => dispatch => {
 };
 
 export const deletePost = id => dispatch => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const headers = {
-    headers: {
-      authorization: token
-    }
-  };
-  dispatch({ type: DELETE_POST_START, payload: id });
+      headers: {
+          authorization: token,
+      },
+  }
+  dispatch({ type: 'DELETE_POST_START' });
   axios
-    .delete(`${baseUrl}api/posts/${id}`, headers)
+    .delete(`https://backend-art.herokuapp.com/api/posts/${id}`, headers)
     .then(response =>
-      dispatch({ type: DELETE_POST_SUCCESS, payload: response.data })
-    )
-    .then(getAllPosts())
-    .catch(error => dispatch({ type: DELETE_POST_FAILURE, payload: error }));
+      dispatch({ type: 'DELETE_POST_SUCCESS', payload: response.data })
+    ).then(() =>       
+          axios.get("https://backend-art.herokuapp.com/api/posts")
+              .then(response =>
+              dispatch({ type: 'FETCH_PHOTOS_SUCCESS', payload: response.data })
+              ))
+              .catch(error => dispatch({ type: 'FETCH_PHOTOS_FAILURE', payload: error }))
+    .catch(error => dispatch({ type: 'DELETE_POST_FAILURE', payload: error }));
 };
