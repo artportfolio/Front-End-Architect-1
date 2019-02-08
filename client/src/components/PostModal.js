@@ -44,7 +44,7 @@ class PostModal extends React.Component {
                 &rsaquo;
               </a>
             )}
-            <button onClick={(e) => this.props.deletePost(e, this.props.src.id)} >Delete</button>
+            <button onClick={(e) => this.props.deletePost(this.props.src.id)} >Delete</button>
             <button>Edit</button>
             <img src={this.props.src.imageUrl} />
           </div>
