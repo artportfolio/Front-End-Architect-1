@@ -10,6 +10,7 @@ import EditUserForm from "./components/EditUserForm";
 import { logoutUser, secretLogin } from "./store/actions/authActions";
 import { getAllPosts } from "./store/actions/postActions";
 import { getAllUsers } from "./store/actions/userActions";
+import Home from './views/Home'
 
 import "./styles/styles.css";
 export class App extends Component {
@@ -25,11 +26,12 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        {/* <Header />
         <div className="wrapper">
           {this.props.loggedIn ? <LoggedInView /> : <LoggedOutView />}
-        </div>
-        <Route path="/add" component={AddPostForm} />
+        </div> */}
+        <Route exact path="/" component={Home} />
+        <Route exact path="/add" component={AddPostForm} />
         <Route path="/edit" component={EditUserForm} />
       </div>
     );

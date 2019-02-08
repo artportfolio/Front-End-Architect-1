@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logoutUser } from "../store/actions/authActions";
 import {
   MdPalette,
@@ -15,21 +15,21 @@ export class Header extends Component {
     return (
       <div>
         <nav className="header">
-          <NavLink exact to="/" className="logo">
+          <Link exact to="/" className="logo">
             <div className="palette">
               <MdPalette />
             </div>
             <span className="logotype">artful</span>
-          </NavLink>
+          </Link>
           <div className="userMenu">
             {this.props.loggedIn ? (
               <span className="icons">
-                <NavLink to={"/create"}>
+                <Link to={"/add"}>
                   <MdAddCircleOutline />
-                </NavLink>
-                <NavLink to={"/add"}>
+                </Link>
+                <Link to={"/edit"}>
                   <MdModeEdit />
-                </NavLink>
+                </Link>
                 <MdExitToApp onClick={this.props.logoutUser} />
               </span>
             ) : null}
