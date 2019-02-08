@@ -43,9 +43,9 @@ const mapStateToProps = state => ({
   logInMessage: state.auth.logInMessage
 });
 
-const AppWithRouter = withRouter(App);
+// const AppWithRouter = withRouter(App);
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   {
     logoutUser,
@@ -53,4 +53,4 @@ export default connect(
     getAllPosts,
     getAllUsers
   }
-)(AppWithRouter);
+)(App));

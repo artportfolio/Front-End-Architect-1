@@ -3,6 +3,7 @@ import LoggedInView from './LoggedInView';
 import LoggedOutView from './LoggedOutView';
 import Header from '../components/Header';
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 
 class Home extends React.Component{
     render(){
@@ -22,4 +23,4 @@ const mapStateToProps = state => ({
     logInMessage: state.auth.logInMessage
   });
 
-export default connect(mapStateToProps, null )(Home);
+export default withRouter(connect(mapStateToProps, null )(Home));

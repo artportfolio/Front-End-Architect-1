@@ -9,6 +9,7 @@ import {
   MdExitToApp
 } from "react-icons/md";
 import "../styles/styles.css";
+import { withRouter } from 'react-router-dom';
 
 export class Header extends Component {
   render() {
@@ -24,10 +25,10 @@ export class Header extends Component {
           <div className="userMenu">
             {this.props.loggedIn ? (
               <span className="icons">
-                <Link to={"/add"}>
+                <Link to="/add">
                   <MdAddCircleOutline />
                 </Link>
-                <Link to={"/edit"}>
+                <Link to="/edit">
                   <MdModeEdit />
                 </Link>
                 <MdExitToApp onClick={this.props.logoutUser} />
@@ -49,7 +50,7 @@ const mapDispatchToProps = {
   logoutUser
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
+)(Header));
