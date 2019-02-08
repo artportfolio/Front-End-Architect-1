@@ -68,10 +68,6 @@ class PostsList extends React.Component {
           hasPrev={this.state.currentIndex > 0}
           hasNext={this.state.currentIndex + 1 < this.props.posts.length}
           src={this.props.posts[this.state.currentIndex]}
-          // upvotes={this.props.posts.upvotes}
-          // userId={this.props.posts[this.state.currentIndex].userId}
-          // description={this.props.posts[this.state.currentIndex].description}
-          // postName={this.props.posts[this.state.currentIndex].postName}
         />
       </div>
     );

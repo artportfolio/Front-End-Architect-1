@@ -21,6 +21,7 @@ export const loginUser = userCredentials => dispatch => {
     .then(response => {
       window.localStorage.setItem("token", response.data.token);
       window.localStorage.setItem("username", userCredentials.username);
+      window.localStorage.setItem("userId", response.data.id);
       dispatch({ type: USER_LOGIN_SUCCESS, payload: response.data });
     })
     .catch(error => dispatch({ type: USER_LOGIN_FAILURE, payload: error }));

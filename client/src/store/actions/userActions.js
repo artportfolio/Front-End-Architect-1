@@ -18,7 +18,7 @@ import {
 } from "./types";
 const baseUrl = "https://backend-art.herokuapp.com/";
 //FOR POSTS,PUTS,DELETES
-const token = localStorage.getItem("jwt");
+const token = localStorage.getItem("token");
 const request = {
   headers: {
     authorization: token

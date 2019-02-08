@@ -60,26 +60,28 @@ export const getUserPosts = id => dispatch => {
 };
 
 export const createPost = post => dispatch => {
-  console.log('adding');
-const token = localStorage.getItem('token');
-const headers = {
+  console.log("adding");
+  const token = localStorage.getItem("token");
+  const headers = {
     headers: {
-        authorization: token,
-    },
-}
-dispatch({ type: 'CREATE_POST_START' });
-axios
-  .post("https://backend-art.herokuapp.com/api/posts", post, headers)
-  .then(response => 
-    dispatch({ type: 'CREATE_POST_SUCCESS', payload: response.data })
-  )
-  .then(() =>       
-  axios.get("https://backend-art.herokuapp.com/api/posts")
-      .then(response =>
-      dispatch({ type: 'GET_ALL_POSTS_SUCCESS', payload: response.data })
-      ))
-      .catch(error => dispatch({ type: 'GET_ALL_POSTS_FAILURE', payload: error }))
-  .catch(error => console.log(error.message));
+      authorization: token
+    }
+  };
+  dispatch({ type: "CREATE_POST_START" });
+  axios
+    .post("https://backend-art.herokuapp.com/api/posts", post, headers)
+    .then(response =>
+      dispatch({ type: "CREATE_POST_SUCCESS", payload: response.data })
+    )
+    .then(() =>
+      axios
+        .get("https://backend-art.herokuapp.com/api/posts")
+        .then(response =>
+          dispatch({ type: "GET_ALL_POSTS_SUCCESS", payload: response.data })
+        )
+    )
+    .catch(error => dispatch({ type: "GET_ALL_POSTS_FAILURE", payload: error }))
+    .catch(error => console.log(error.message));
 };
 
 export const getAllPosts = () => dispatch => {
@@ -126,22 +128,26 @@ export const editPost = (id, changes) => dispatch => {
 };
 
 export const deletePost = id => dispatch => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const headers = {
-      headers: {
-          authorization: token,
-      },
-  }
-  dispatch({ type: 'DELETE_POST_START' });
+    headers: {
+      authorization: token
+    }
+  };
+  dispatch({ type: "DELETE_POST_START" });
   axios
     .delete(`https://backend-art.herokuapp.com/api/posts/${id}`, headers)
     .then(response =>
-      dispatch({ type: 'DELETE_POST_SUCCESS', payload: response.data })
-    ).then(() =>       
-          axios.get("https://backend-art.herokuapp.com/api/posts")
-              .then(response =>
-              dispatch({ type: 'FETCH_PHOTOS_SUCCESS', payload: response.data })
-              ))
-              .catch(error => dispatch({ type: 'FETCH_PHOTOS_FAILURE', payload: error }))
-    .catch(error => dispatch({ type: 'DELETE_POST_FAILURE', payload: error }));
+      dispatch({ type: "DELETE_POST_SUCCESS", payload: response.data })
+    )
+    .then(() =>
+      axios
+        .get("https://backend-art.herokuapp.com/api/posts")
+        .then(response =>
+          dispatch({ type: "FETCH_PHOTOS_SUCCESS", payload: response.data })
+        )
+    )
+    .catch(error => dispatch({ type: "FETCH_PHOTOS_FAILURE", payload: error }))
+    .then(() => {})
+    .catch(error => dispatch({ type: "DELETE_POST_FAILURE", payload: error }));
 };

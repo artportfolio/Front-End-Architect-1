@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { TiHeartOutline, TiHeartFullOutline } from "react-icons/ti";
-import { deletePost, editPost } from '../store/actions';
+import { deletePost, editPost } from "../store/actions";
 
 class PostModal extends React.Component {
   constructor(props) {
@@ -22,9 +22,7 @@ class PostModal extends React.Component {
         userImgUrl: thing.userImgUrl
       }));
     };
-
-    console.log(`users: ${parseUsers()}`);
-    console.log(`src: ${this.props.src.id}`);
+    const user = localStorage.getItem("userId");
 
     return (
       <div>
@@ -44,8 +42,12 @@ class PostModal extends React.Component {
                 &rsaquo;
               </a>
             )}
-            <button onClick={(e) => this.props.deletePost(this.props.src.id)} >Delete</button>
+
+            <button onClick={e => this.props.deletePost(this.props.src.id)}>
+              Delete
+            </button>
             <button>Edit</button>
+
             <img src={this.props.src.imageUrl} />
           </div>
           <span className="postInfoLine">{this.artistIndex}</span>
@@ -72,5 +74,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {deletePost, editPost}
+  { deletePost, editPost }
 )(PostModal);

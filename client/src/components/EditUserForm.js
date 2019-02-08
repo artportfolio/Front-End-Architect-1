@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { editUser } from "../store/actions/userActions";
+import { TiUserDeleteOutline } from "react-icons/ti";
 
 class EditUserForm extends Component {
   constructor(props) {
     super(props);
+    const userID = localStorage.getItem("userId");
     this.state = {
+      id: userID,
       username: "",
       fullName: "",
       password: "",
@@ -30,7 +33,7 @@ class EditUserForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.editUser(this.state);
+    this.props.editUser(this.state.id, this.state);
   }
 
   render() {
@@ -83,7 +86,7 @@ class EditUserForm extends Component {
               onChange={this.handleInputChange}
             />
           </StyledLabel>
-          <StyledButton type="submit">Register</StyledButton>
+          <StyledButton type="submit">UPDATE</StyledButton>
         </StyledForm>
       </StyledFormContainer>
     );

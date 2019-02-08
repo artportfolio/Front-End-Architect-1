@@ -7,10 +7,11 @@ import { LoggedInView } from "./views/LoggedInView";
 import { LoggedOutView } from "./views/LoggedOutView";
 import AddPostForm from "./components/AddPostForm";
 import EditUserForm from "./components/EditUserForm";
+import PostsList from "./components/PostsList";
 import { logoutUser, secretLogin } from "./store/actions/authActions";
 import { getAllPosts } from "./store/actions/postActions";
 import { getAllUsers } from "./store/actions/userActions";
-import Home from './views/Home'
+import Home from "./views/Home";
 
 import "./styles/styles.css";
 export class App extends Component {
@@ -33,6 +34,7 @@ export class App extends Component {
         <Route exact path="/" component={Home} />
         <Route exact path="/add" component={AddPostForm} />
         <Route path="/edit" component={EditUserForm} />
+        <Route path="/posts" component={PostsList} />
       </div>
     );
   }
@@ -45,12 +47,14 @@ const mapStateToProps = state => ({
 
 // const AppWithRouter = withRouter(App);
 
-export default withRouter(connect(
-  mapStateToProps,
-  {
-    logoutUser,
-    secretLogin,
-    getAllPosts,
-    getAllUsers
-  }
-)(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {
+      logoutUser,
+      secretLogin,
+      getAllPosts,
+      getAllUsers
+    }
+  )(App)
+);
